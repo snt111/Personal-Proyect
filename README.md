@@ -50,19 +50,14 @@ duckyCommands = {
 }
 def convertLine(line):
     newline = []
-   
     for key in filter(None, line.split(" ")):
         key = key.upper()
-        
         command_keycode = duckyCommands.get(key, None)
-        if command_keycode is not None:
-           
+        if command_keycode is not None:         
             newline.append(command_keycode)
         elif hasattr(Keycode, key):
-       
             newline.append(getattr(Keycode, key))
         else:
-            
             print(f"Unknown key: <{key}>")
     # print(newline)
     return newline
@@ -78,7 +73,6 @@ def sendString(line):
 def parseLine(line):
     global defaultDelay
     if(line[0:3] == "REM"):
-       
         pass
     elif(line[0:5] == "DELAY"):
         time.sleep(float(line[6:])/1000)
@@ -103,8 +97,6 @@ def parseLine(line):
 
 kbd = Keyboard(usb_hid.devices)
 layout = KeyboardLayout(kbd)
-
-
 time.sleep(.5)
 
 # check GP0 for setup mode
@@ -117,7 +109,6 @@ defaultDelay = 0
 
 def runScript(file):
     global defaultDelay
-
     duckyScriptPath = file
     f = open(duckyScriptPath,"r",encoding='utf-8')
     previousLine = ""
@@ -126,7 +117,6 @@ def runScript(file):
         line = line.rstrip()
         if(line[0:6] == "REPEAT"):
             for i in range(int(line[7:])):
-            
                 parseLine(previousLine)
                 time.sleep(float(defaultDelay)/1000)
         else:
@@ -138,7 +128,6 @@ if(progStatus == False):
     # not in setup mode, inject the payload
     print("Running payload.dd")
     runScript("payload.dd")
-
     print("Done")
 else:
     print("Update your payload")
