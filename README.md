@@ -6,6 +6,12 @@ El objetivo de mi proyecto personal me interesa, por lo que es consecuente que i
 
 The objective of my personal project is of interest to me, which is why it is consequential that it has an impact on people and raise vigilance of the effects and consequences of the utilization of computer systems, fixating on computers with the Windows 10 operating system and rudimentary implements such as USB and scripts. in Python as a programming language. My audience is general, but it is aimed at the most vulnerably susceptible people with little experience in computer systems and information technologies.
 
+
+
+
+
+
+
 CODIGO:
 
 #Personal Proyect - Raspberry Pi Pico 
@@ -99,8 +105,6 @@ kbd = Keyboard(usb_hid.devices)
 layout = KeyboardLayout(kbd)
 time.sleep(.5)
 
-# check GP0 for setup mode
-# see setup mode for instructions
 progStatus = False
 progStatusPin = digitalio.DigitalInOut(GP0)
 progStatusPin.switch_to_input(pull=digitalio.Pull.UP)
@@ -125,7 +129,6 @@ def runScript(file):
         time.sleep(float(defaultDelay)/1000)
 
 if(progStatus == False):
-    # not in setup mode, inject the payload
     print("Running payload.dd")
     runScript("payload.dd")
     print("Done")
